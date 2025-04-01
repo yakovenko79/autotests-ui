@@ -4,7 +4,15 @@ import pytest
 
 @pytest.mark.regression
 @pytest.mark.authorization
-def test_wrong_email_or_password_authorization():
+@pytest.mark.parametrize(
+    "email, password",
+    [
+        ("user.name@gmail.com", "password"),
+        ("user.name@gmail.com", "  "),
+        ("  ", "password")
+    ]
+)
+def test_wrong_email_or_password_authorization(email: str, password: str):
     with sync_playwright() as playwright:
         browser = playwright.firefox.launch(headless=False)
         page = browser.new_page()
@@ -12,10 +20,10 @@ def test_wrong_email_or_password_authorization():
         page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
 
         email_input = page.get_by_test_id('login-form-email-input').locator('input')
-        email_input.fill('user.name@gmail.com')
+        email_input.fill(email)
 
         password_input = page.get_by_test_id('login-form-password-input').locator('input')
-        password_input.fill('password')
+        password_input.fill(password)
 
         page.get_by_test_id('login-page-login-button').click()
 
