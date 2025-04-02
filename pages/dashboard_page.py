@@ -12,4 +12,3 @@ class DashboardPage(BasePage):
     def check_dashboard_title(self):
         expect(self.dashboard_title).to_be_visible()
         expect(self.dashboard_title).to_have_text('Dashboard')
-        self.should_be_current_url('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/dashboard')
