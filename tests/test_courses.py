@@ -34,11 +34,11 @@ def test_create_course(
     create_course_page.check_visible_image_preview_empty_view()
     create_course_page.check_visible_image_upload_view()
     create_course_page.check_visible_create_course_form(
-        '',
-        '',
-        '',
-        '0',
-        '0'
+        title='',
+        estimated_time='',
+        description='',
+        max_score='0',
+        min_score='0'
     )
 
     create_course_page.check_visible_exercises_title()
@@ -48,20 +48,20 @@ def test_create_course(
     create_course_page.check_visible_image_upload_view(True)
 
     create_course_page.fill_create_course_form(
-        'Playwright',
-        '2 weeks',
-        'Playwright',
-        '100',
-        '10'
+        title='Playwright',
+        estimated_time='2 weeks',
+        description='Playwright',
+        max_score='100',
+        min_score='10'
     )
 
     create_course_page.click_create_course_button()
     courses_list_page.check_visible_courses_title()
     courses_list_page.check_visible_create_course_button()
     courses_list_page.check_visible_course_card(
-        0,
-        'Playwright',
-        '100',
-        '10',
-        '2 weeks'
+        index=0,
+        title='Playwright',
+        max_score='100',
+        min_score='10',
+        estimated_time='2 weeks'
     )
