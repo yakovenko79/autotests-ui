@@ -3,7 +3,7 @@ from playwright.sync_api import Page, expect
 from pages.base_page import BasePage
 
 
-class CoursesPage(BasePage):
+class CoursesListPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
@@ -14,7 +14,7 @@ class CoursesPage(BasePage):
         self.course_image = page.get_by_test_id('course-preview-image')
 
         self.course_max_text = page.get_by_test_id('course-max-score-info-row-view-text')
-        self.course_min_text = page.get_by_test_id('course-min-score-info-row-row')
+        self.course_min_text = page.get_by_test_id('course-min-score-info-row-view-text')
         self.estimated_time = page.get_by_test_id('course-estimated-time-info-row-view-text')
 
         self.course_kebab_menu_button = page.get_by_test_id('course-view-menu-button')
@@ -56,10 +56,10 @@ class CoursesPage(BasePage):
         expect(self.course_title.nth(index)).to_have_text(title)
 
         expect(self.course_max_text.nth(index)).to_be_visible()
-        expect(self.course_max_text.nth(index)).to_have_text(f'Max score {max_score}')
+        expect(self.course_max_text.nth(index)).to_have_text(f'Max score: {max_score}')
 
         expect(self.course_min_text.nth(index)).to_be_visible()
-        expect(self.course_min_text.nth(index)).to_have_text(f'Max score {min_score}')
+        expect(self.course_min_text.nth(index)).to_have_text(f'Min score: {min_score}')
 
         expect(self.estimated_time.nth(index)).to_be_visible()
         expect(self.estimated_time.nth(index)).to_have_text(f'Estimated time: {estimated_time}')
@@ -73,4 +73,3 @@ class CoursesPage(BasePage):
         self.course_kebab_menu_button.nth(index).click()
         expect(self.course_delete_menu_button.nth(index)).to_be_visible()
         self.course_delete_menu_button.click()
-
