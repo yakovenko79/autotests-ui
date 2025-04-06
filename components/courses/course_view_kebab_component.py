@@ -22,7 +22,3 @@ class CourseViewKebabComponent(BaseComponent):
 
         expect(self.delete_menu_button.nth(index)).to_be_visible()
         self.delete_menu_button.nth(index).click()
-
-
-
-

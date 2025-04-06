@@ -30,5 +30,3 @@ class CourseViewComponent(BaseComponent):
 
         expect(self.estimated_time.nth(index)).to_be_visible()
         expect(self.estimated_time.nth(index)).to_have_text(f'Estimated time: {estimated_time}')
-
-
