@@ -6,8 +6,6 @@ from components.base_component import BaseComponent
 class ChartViewComponent(BaseComponent):
     def __init__(self, page: Page, identifier: str, chart_type: str):
         super().__init__(page)
-        self.identifier = identifier
-        self.chart_type = chart_type
 
         self.title = page.get_by_test_id(f'{identifier}-widget-title-text')
         self.chart = page.get_by_test_id(f'{identifier}-{chart_type}-chart')

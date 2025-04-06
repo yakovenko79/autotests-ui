@@ -13,9 +13,6 @@ class RegistrationPage(BasePage):
         self.login_link = page.get_by_test_id('registration-page-login-link')
         self.registration_button = page.get_by_test_id('registration-page-registration-button')
 
-    def fill_registration_form(self, email: str, username: str, password: str):
-        self.registration_form_component.fill(email, username, password)
-
     def click_registration_button(self):
         self.registration_button.click()
 
