@@ -7,7 +7,7 @@ from elements.text import Text
 
 
 class CreateCourseExerciseFormComponent(BaseComponent):
-    def __init__(self, page: Page, ):
+    def __init__(self, page: Page):
         super().__init__(page)
 
         self.delete_exercise_button = Button(page, 'create-course-exercise-{index}-box-toolbar-delete-exercise-button',
@@ -23,8 +23,8 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         self.title_input.check_visible(index=index)
         self.title_input.check_have_value(title, index=index)
 
-        self.title_input.check_visible(index=index)
-        self.title_input.check_have_value(title, index=index)
+        self.description_input.check_visible(index=index)
+        self.description_input.check_have_value(description, index=index)
 
     def click_delete_button(self, index: int):
         self.delete_exercise_button.click(index=index)
