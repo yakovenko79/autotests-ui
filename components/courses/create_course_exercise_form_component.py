@@ -11,8 +11,8 @@ class CreateCourseExerciseFormComponent(BaseComponent):
         super().__init__(page)
 
         self.delete_exercise_button = Button(page, 'create-course-exercise-{index}-box-toolbar-delete-exercise-button',
-                                             'Delete exercise')
-        self.subtitle = Text(page, 'create-course-exercise-{index}-box-toolbar-subtitle-text', 'Exercise subtitle')
+                                             'Button')
+        self.subtitle = Text(page, 'create-course-exercise-{index}-box-toolbar-subtitle-text', 'Subtitle')
         self.title_input = Input(page, 'create-course-exercise-form-title-{index}-input', 'Title')
         self.description_input = Input(page, 'create-course-exercise-form-description-{index}-input', 'Description')
 
@@ -35,4 +35,3 @@ class CreateCourseExerciseFormComponent(BaseComponent):
 
         self.description_input.fill(description, index=index)
         self.description_input.check_have_value(description, index=index)
-
