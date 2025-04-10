@@ -12,9 +12,9 @@ class CreateCourseToolbarViewComponent(BaseComponent):
         self.title = Text(page, 'create-course-toolbar-title-text', 'Title')
         self.create_course_button = Button(page, 'create-course-toolbar-create-course-button', 'Button')
 
-    def check_visible(self, is_create_course_disabled=True):
+    def check_visible(self, title='Create course', is_create_course_disabled=True):
         self.title.check_visible()
-        self.title.check_have_text('Create course')
+        self.title.check_have_text(title)
         self.create_course_button.check_visible()
 
         if is_create_course_disabled:

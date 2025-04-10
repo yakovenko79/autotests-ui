@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from pages.courses.courses_list_page import CoursesListPage
@@ -50,4 +52,59 @@ class TestCourses:
             max_score='100',
             min_score='10',
             estimated_time='2 weeks'
+        )
+
+    @pytest.mark.test_edit_course
+    def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
+        create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
+        create_course_page.create_course_toolbar_view_component.check_visible(is_create_course_disabled=True)
+        create_course_page.image_upload_widget.check_visible(is_image_uploaded=False)
+        create_course_page.create_course_form_component.check_visible(
+            title="",
+            estimated_time="",
+            description="",
+            min_score='0',
+            max_score='0'
+        )
+        create_course_page.create_course_toolbar_view_component.create_course_button.check_disabled()
+        create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png')
+        create_course_page.create_course_form_component.fill(
+            title='My Course',
+            estimated_time='5 days',
+            description='This is a course',
+            min_score='10',
+            max_score='100'
+        )
+        create_course_page.create_course_toolbar_view_component.check_visible(is_create_course_disabled=False)
+        create_course_page.create_course_toolbar_view_component.click_create_course_button()
+        courses_list_page.check_current_url(re.compile('.*/#/courses'))
+        courses_list_page.toolbar_view.check_visible()
+        courses_list_page.course_view.check_visible(
+            index=0,
+            max_score='100',
+            min_score='10',
+            estimated_time='5 days',
+            title='My Course'
+        )
+        courses_list_page.course_view.kebab.click_edit(index=0)
+        create_course_page.check_current_url(re.compile(".*/#/courses/*."))
+        create_course_page.create_course_toolbar_view_component.check_visible(
+            "Update course",
+            is_create_course_disabled=False)
+        create_course_page.create_course_form_component.fill(
+            title='Interesting Course',
+            estimated_time='9.5 weeks',
+            description='Course for adult',
+            min_score='1',
+            max_score='69'
+        )
+        create_course_page.create_course_toolbar_view_component.click_create_course_button()
+        courses_list_page.check_current_url(re.compile(".*/#/courses"))
+        courses_list_page.toolbar_view.check_visible()
+        courses_list_page.course_view.check_visible(
+            index=0,
+            title='Interesting Course',
+            estimated_time='9.5 weeks',
+            min_score='1',
+            max_score='69'
         )
