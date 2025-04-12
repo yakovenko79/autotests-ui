@@ -69,7 +69,6 @@ class TestCourses:
             estimated_time='2 weeks'
         )
 
-    @pytest.mark.test_edit_course
     def test_edit_course(self, create_course_page: CreateCoursePage, courses_list_page: CoursesListPage):
         create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
         create_course_page.create_course_toolbar_view_component.check_visible(is_create_course_disabled=True)
