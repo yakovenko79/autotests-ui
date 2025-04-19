@@ -25,8 +25,8 @@ class BaseElement:
     def click(self, nth: int = 0, **kwargs):
         step = f'Clicking {self.type_of} "{self.name}" '
         with allure.step(step):
-            logger.info(step)
             locator = self.get_locator(nth, **kwargs)
+            logger.info(step)
             locator.click()
 
     def check_visible(self, nth: int = 0, **kwargs):
