@@ -1,5 +1,9 @@
-from elements.base_element import BaseElement, logger
+from elements.base_element import BaseElement
 import allure
+
+from tools.logger import get_logger
+
+logger = get_logger("FILE_INPUT")
 
 
 class FileInput(BaseElement):

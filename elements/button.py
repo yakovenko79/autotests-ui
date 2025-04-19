@@ -1,6 +1,9 @@
 import allure
 from playwright.sync_api import expect
-from elements.base_element import BaseElement, logger
+from elements.base_element import BaseElement
+from tools.logger import get_logger
+
+logger = get_logger("BUTTON")
 
 
 class Button(BaseElement):
