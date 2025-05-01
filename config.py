@@ -1,5 +1,3 @@
-import platform
-import sys
 from typing import Self
 
 from pydantic import EmailStr, FilePath, DirectoryPath, HttpUrl, BaseModel
@@ -40,8 +38,6 @@ class Settings(BaseSettings):
     tracing_dir: DirectoryPath
     browser_state_file: FilePath
     allure_results_dir: DirectoryPath
-    os_info: str
-    python_version: str
 
     @classmethod
     def initialize(cls) -> Self:
@@ -53,16 +49,12 @@ class Settings(BaseSettings):
         tracing_dir.mkdir(exist_ok=True)
         allure_results_dir.mkdir(exist_ok=True)
         browser_state_file.touch(exist_ok=True)
-        os_info = f'{platform.system()}, {platform.release()}'
-        python_version = sys.version
 
         return Settings(
             videos_dir=videos_dir,
             tracing_dir=tracing_dir,
             allure_results_dir=allure_results_dir,
             browser_state_file=browser_state_file,
-            os_info=os_info,
-            python_version=python_version
         )
 
     def get_base_url(self) -> str:
