@@ -33,8 +33,6 @@ class TestCourses:
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.check_visible_empty_view()
 
-        allure.attach.file('coverage.html', attachment_type=allure.attachment_type.HTML)
-
     @allure.title('Create course')
     @allure.title(Severity.CRITICAL)
     def test_create_course(self, courses_list_page: CoursesListPage, create_course_page: CreateCoursePage):
