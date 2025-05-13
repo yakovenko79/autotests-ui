@@ -43,15 +43,16 @@ jobs:
       - name: Generate Coverage report
         run: |
           ui-coverage-tool save-report
-          
+
       - name: Cache Coverage history
         if: always()
         uses: actions/cache/save@v4
         with:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
-          
+
       - name: Upload Coverage results as artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
@@ -97,4 +98,3 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-

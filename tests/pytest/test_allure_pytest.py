@@ -25,3 +25,5 @@ def test_feature():
     create_course(title='Pytest')
     create_course(title='Python')
     create_course(title='Playwright')
+
+
