@@ -21,3 +21,4 @@ class EmptyViewComponents(BaseComponent):
         self.title.check_have_text(title)
         self.description.check_visible()
         self.description.check_have_text(description)
+
